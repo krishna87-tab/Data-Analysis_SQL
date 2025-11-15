@@ -252,3 +252,9 @@ Medallion architecture pipelines
 You can mention in interviews:
 
 ##Personal Note “I designed SQL logic that feeds the semantic model for dashboards, including trend, segmentation, and performance insights.”
+
+⭐⭐ Author
+
+Krishna Kamal Gogoi
+Business Intelligence Analyst
+Power BI • SQL • DAX • Microsoft Fabric
