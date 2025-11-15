@@ -5,7 +5,9 @@ Advanced Analytical SQL for Sales, Customers & Product Performance
 📌 1. Project Overview
 
 This project demonstrates an end-to-end SQL-based analytics solution designed to support business decision-making across Sales, Customers, and Product performance. The goal is to simulate how a BI Analyst uses SQL to build insights for dashboards, KPIs, and executive reporting.
-![Alt text]()
+
+![Alt text](https://github.com/krishna87-tab/Data-Analysis_SQL/blob/3eff266e1a64fa12ba9d564ca4a5e5ee80aa9535/BPF.png)
+
 It covers:
 
 Time-series analysis
