@@ -6,6 +6,8 @@ Advanced Analytical SQL for Sales, Customers & Product Performance
 
 This project demonstrates an end-to-end SQL-based analytics solution designed to support business decision-making across Sales, Customers, and Product performance. The goal is to simulate how a BI Analyst uses SQL to build insights for dashboards, KPIs, and executive reporting.
 
+✅ ERD (Entity Relationship Diagram)
+
 ![Alt text](https://github.com/krishna87-tab/Data-Analysis_SQL/blob/4d102692de9bd70f309bd530cada9bc95a927d7b/BPF.png)
 
 It covers:
