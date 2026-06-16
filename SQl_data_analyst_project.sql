@@ -1,49 +1,59 @@
 
--- Change over time trends
--- Analyze how a measure evolves over time
--- Helps tracking the trends and identify seasonality in your data
+## Monthly sales trend analysis
+## Tracks revenue, customer count, order quantity, and month-over-month sales growth
 
-
-select 
-DATETRUNC(MONTH,[order_date]) as order_date,
-year([order_date]) as yearly_sales,
-month([order_date]) as monthly_sales,
-
-sum([sales_amount]) as total_sales,
-count(distinct [customer_key])as total_customers,
-sum([quantity]) as total_quantity
-
-from [gold].[fact_sales]
-where order_date is not null
-
-group by 
-month([order_date]),
-year([order_date]),
-DATETRUNC(MONTH,[order_date])
-
-order by 
-sum([sales_amount]) desc;
-
--- Cumulative Analysis
--- Calculate the total sales per month
--- Running total of the sales over time
+WITH monthly_sales AS (
+    SELECT
+        DATETRUNC(MONTH, order_date) AS order_month,
+        SUM(sales_amount) AS total_sales,
+        COUNT(DISTINCT customer_key) AS total_customers,
+        SUM(quantity) AS total_quantity
+    FROM gold.fact_sales
+    WHERE order_date IS NOT NULL
+    GROUP BY DATETRUNC(MONTH, order_date)
+)
 
 SELECT
-    order_date,
+    order_month,
     total_sales,
-    SUM(total_sales) OVER (partition by order_date ORDER BY order_date) AS running_total,
-	Avg(avg_price) OVER (partition by order_date ORDER BY order_date) AS moving_avg
-FROM (
+    total_customers,
+    total_quantity,
+    LAG(total_sales) OVER (ORDER BY order_month) AS previous_month_sales,
+    total_sales - LAG(total_sales) OVER (ORDER BY order_month) AS sales_change,
+    ROUND(
+        100.0 * (total_sales - LAG(total_sales) OVER (ORDER BY order_month))
+        / NULLIF(LAG(total_sales) OVER (ORDER BY order_month), 0),
+        2
+    ) AS monthly_growth_percentage
+FROM monthly_sales
+ORDER BY order_month;
+
+## Cumulative sales analysis
+## Calculates monthly sales, running total sales, and moving average price over time
+
+WITH monthly_sales AS (
     SELECT
-        DATETRUNC(MONTH, order_date) AS order_date,
+        DATETRUNC(MONTH, order_date) AS order_month,
         SUM(sales_amount) AS total_sales,
-		AVG([price]) as avg_price
-    FROM 
-        gold.fact_sales
+        AVG(price) AS avg_price
+    FROM gold.fact_sales
     WHERE order_date IS NOT NULL
-    GROUP BY 
-        DATETRUNC(MONTH, order_date)
-)subquery;
+    GROUP BY DATETRUNC(MONTH, order_date)
+)
+
+SELECT
+    order_month,
+    total_sales,
+    SUM(total_sales) OVER (
+        ORDER BY order_month
+        ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+    ) AS running_total_sales,
+    AVG(avg_price) OVER (
+        ORDER BY order_month
+        ROWS BETWEEN 2 PRECEDING AND CURRENT ROW
+    ) AS three_month_moving_avg_price
+FROM monthly_sales
+ORDER BY order_month;
 
 -- Performance Analsysis
 -- Current Meassure - Target Measure
