@@ -37,7 +37,7 @@ Product profitability & lifecycle
 
 This project reflects real-world BI responsibilities across Finance, Sales, and Operations analytics.
 
-🏢 2. Business Narrative
+## Business Narrative
 
 A retail e-commerce company wants a unified BI solution to:
 
