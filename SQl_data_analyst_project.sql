@@ -1,6 +1,6 @@
 
-## Monthly sales trend analysis
-## Tracks revenue, customer count, order quantity, and month-over-month sales growth
+##Monthly sales trend analysis
+##Tracks revenue, customer count, order quantity, and month-over-month sales growth
 
 WITH monthly_sales AS (
     SELECT
