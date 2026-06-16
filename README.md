@@ -1,12 +1,21 @@
-Holistic Business Intelligence Using SQL
+# SQL Server Business Intelligence Analytics Project
 
 Advanced Analytical SQL for Sales, Customers & Product Performance
 
-📌 1. Project Overview
+## Project Overview
 
-This project demonstrates an end-to-end SQL-based analytics solution designed to support business decision-making across Sales, Customers, and Product performance. The goal is to simulate how a BI Analyst uses SQL to build insights for dashboards, KPIs, and executive reporting.
+This project focuses on analyzing sales, customer, and product performance using SQL Server.  
+The goal is to transform raw sales data into meaningful business insights through SQL queries, 
+aggregations, joins, CTEs, window functions, and segmentation logic.
 
-✅Business Objecttive Flowchart
+## Tools Used
+
+- SQL Server
+- SQL Server Management Studio
+- T-SQL
+- Business Intelligence Concepts
+
+## Business Objecttive Flowchart
 
 ![Alt text](https://github.com/krishna87-tab/Data-Analysis_SQL/blob/4d102692de9bd70f309bd530cada9bc95a927d7b/BPF.png)
 
@@ -60,7 +69,7 @@ Are we improving YoY, or declining?
 
 These insights feed BI dashboards (Power BI, Fabric Warehouse, etc.) for decision-making.
 
-🗂️ 3. Data Sources
+Data Sources
 Fact Table
 
 gold.fact_sales
@@ -74,191 +83,187 @@ Product metadata, pricing, categories, cost.
 gold.dim_customers
 Customer demographics, birthdates, customer IDs.
 
-🧱 4. Project Components
-A. Change Over Time (Trend Analysis)
+## Project Components
+## Key Analysis Performed
 
-Purpose:
-✔ Understand how revenue evolves month-over-month
-✔ Identify seasonality
-✔ Track customer & quantity trends
+### 1. Change Over Time Analysis
 
-Key outputs:
+Analyzed monthly sales trends to understand how revenue, customer count, and quantity sold changed over time.
 
-Monthly sales
+Key metrics:
 
-Year & month level KPIs
+- Total sales
+- Total customers
+- Total quantity sold
+- Monthly sales trend
 
-Number of active customers
+---
 
-Product quantity trends
+### 2. Cumulative Sales Analysis
 
-Used for: trend dashboards, forecasting, and executive views
+Calculated running total sales and moving averages to understand long-term sales growth patterns.
 
-B. Cumulative & Moving Averages Analysis
+Key metrics:
 
-Purpose:
-✔ Create cumulative sales (running total)
-✔ Calculate moving average (avg price over time)
-✔ Support smoothing of volatility
+- Monthly sales
+- Running total sales
+- Moving average price or sales
 
-Used for:
+---
 
-Rolling KPIs
+### 3. Product Performance Analysis
 
-Finance dashboards
+Compared yearly product sales against each product’s average sales performance and previous year sales.
 
-Growth tracking
+Key techniques used:
 
-C. Performance Analysis (Benchmarking & YoY)
+- CTEs
+- Window functions
+- `AVG() OVER()`
+- `LAG() OVER()`
+- Year-over-year comparison
+- Performance classification
 
-Purpose:
-✔ Compare product performance vs:
+---
 
-Their own past performance (YoY)
+### 4. Year-over-Year Analysis
 
-Average performance of similar products
-✔ Classify products as Above Average / Below Average
-✔ Identify improving or declining categories
+Measured product sales changes compared to the previous year.
 
-Used for: strategy, pricing, assortment planning
+Products were classified as:
 
-D. Part-to-Whole Analysis (Category Contribution)
+- Increasing Sales
+- Decreasing Sales
+- No Change
 
-Purpose:
-✔ Determine which categories drive most revenue
-✔ Calculate % contribution
-✔ Helps in strategic investment decisions
+---
 
-Used for: Pareto analysis, category dashboards
+### 5. Part-to-Whole Analysis
 
-E. Product Segmentation (Price-Based)
+Calculated each product category’s contribution to total sales.
 
-Purpose:
-✔ Group products into cost bands
-✔ Identify inventory mix (cheap, mid-range, premium)
-✔ Useful for pricing strategy
+Key metrics:
 
-F. Customer Segmentation (VIP | Regular | New)
+- Category sales
+- Overall sales
+- Percentage contribution to total sales
 
-Purpose:
-✔ Classify customers based on:
+This helps identify which categories generate the highest revenue share.
 
-Spending
+---
 
-Lifespan
-✔ Build cohorts for targeted marketing
+### 6. Product Cost Segmentation
 
-VIP: >12 months & >$5,000 spend
-Regular: >12 months & <$5,000
-New: <12 months
+Segmented products into cost ranges to understand product distribution across pricing tiers.
 
-Used for:
+Segments include:
 
-Retention dashboards
+- Below 100
+- 100-499
+- 500-999
+- 1000 and Above
 
-Marketing campaigns
+---
 
-Customer journey analytics
+### 7. Customer Segmentation
 
-G. Customer Report (Demographics + Behavior)
+Grouped customers based on spending behavior and customer lifespan.
 
-Purpose:
-✔ Build a consolidated customer view
-✔ Age groups
-✔ Recency metric
-✔ Purchase frequency
-✔ Average Order Value (AOV)
-✔ Monthly spend
+Customer segments:
 
-Used for: 360° customer insights dashboard
+- VIP: Customers with at least 12 months of history and spending above 5000
+- Regular: Customers with at least 12 months of history and spending 5000 or less
+- New: Customers with less than 12 months of history
 
-H. Product Report (Lifecycle & Profitability)
+---
 
-Purpose:
-✔ Product-level KPI summary
-✔ Sales recency
-✔ Avg selling price
-✔ Revenue and quantity
-✔ High / mid / low performer classification
+### 8. Customer Report
 
-Used for: product management, merchandising, supply chain
+Created a customer-level report that consolidates customer demographics and purchasing behavior.
 
-🎯 5. Key Business Insights Enabled
+Included metrics:
 
-This SQL system allows the business to:
-
-✔ Identify high-growth and declining product segments
-✔ Quantify customer value & run loyalty strategies
-✔ Build retention and reactivation strategies
-✔ Spot seasonal revenue patterns
-✔ Improve pricing and discount execution
-✔ Optimize inventory based on product performance
-✔ Track revenue composition across categories
-✔ Support Power BI dashboards with robust, cleaned data
-
-This is exactly the type of analysis BI teams deliver in real companies.
-
-🛠️ 6. Technical Highlights
-✔ Window functions
-
-LAG()
-
-OVER(PARTITION BY…)
-
-SUM() OVER
-
-AVG() OVER
-
-✔ CTE Layering
-
-Used for clean logic separation:
-
-Base queries
-
-Segmentation
-
-Ranking
-
-Aggregations
-
-✔ Date-based functions
-
-DATETRUNC()
-
-DATEDIFF()
-
-YEAR()
-
-MONTH()
-
-✔ Classifications
-
-Case expressions
-
-Threshold-based segmentation
-
-📊 7. How This Project Fits BI Workflows
-
-This SQL foundation supports:
-
-Power BI dashboards
-
-Fabric Lakehouse → Warehouse transformation
-
-DAX measures
-
-KPI modelling
-
-Data modelling in star schema
-
-Medallion architecture pipelines
-
-You can mention in interviews:
-
-##Personal Note “I designed SQL logic that feeds the semantic model for dashboards, including trend, segmentation, and performance insights.”
-
-⭐⭐ Author
+- Customer name
+- Age group
+- Customer segment
+- Last order date
+- Recency in months
+- Total orders
+- Total sales
+- Total quantity purchased
+- Total products purchased
+- Average order value
+- Average monthly spend
+
+---
+
+### 9. Product Report
+
+Created a product-level report to evaluate product performance and revenue behavior.
+
+Included metrics:
+
+- Product name
+- Category
+- Subcategory
+- Cost
+- Last sale date
+- Recency in months
+- Product segment
+- Total sales
+- Total orders
+- Total quantity sold
+- Average selling price
+- Average order revenue
+- Average monthly revenue
+
+Product segments:
+
+- High Performer
+- Mid Range
+- Low Performer
+
+## SQL Concepts Used
+
+This project demonstrates the following SQL skills:
+
+- Joins
+- Common Table Expressions
+- Aggregations
+- Window functions
+- LAG()
+- AVG() OVER()
+- SUM() OVER()
+- CASE statements
+- Date functions
+- Customer segmentation
+- Product segmentation
+- Year-over-year analysis
+- Running totals
+- Part-to-whole analysis
+- Business reporting logic
+
+
+## Business Value
+
+This project simulates real-world business intelligence reporting by converting transactional sales data into useful insights for decision-making.
+
+The analysis can help stakeholders:
+
+- Monitor sales trends
+- Identify high-performing products
+- Understand customer behavior
+- Track revenue growth
+- Find declining product performance
+- Segment customers for targeted business strategies
+- Measure product and category contribution to revenue
+
+## Project Outcome
+
+The final output includes a set of SQL queries and analytical reports that can support dashboard development in tools such as Power BI, Tableau, or Excel.
+
+This project demonstrates the ability to use SQL for business analysis, reporting, and performance tracking.
 
 Krishna Kamal Gogoi
 Business Intelligence Analyst
-Power BI • SQL • DAX • Microsoft Fabric
+Power BI || SQL Server || DAX || dbt || Snowflake || Google Big Query || Microsoft Fabric 
