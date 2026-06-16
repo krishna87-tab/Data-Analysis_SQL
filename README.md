@@ -264,6 +264,8 @@ The final output includes a set of SQL queries and analytical reports that can s
 
 This project demonstrates the ability to use SQL for business analysis, reporting, and performance tracking.
 
-Krishna Kamal Gogoi
+Krishna Kamal Gogoi 
+
 Business Intelligence Analyst
+
 Power BI || SQL Server || DAX || dbt || Snowflake || Google Big Query || Microsoft Fabric 
