@@ -1,4 +1,4 @@
-# SQL Server Business Intelligence Analytics Project
+# sales-customer-product-bi-analysis-sql
 
 Advanced Analytical SQL for Sales, Customers & Product Performance
 
