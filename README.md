@@ -266,6 +266,6 @@ This project demonstrates the ability to use SQL for business analysis, reportin
 
 Krishna Kamal Gogoi 
 
-Business Intelligence Analyst
+Business Operations Analyst
 
 Power BI || SQL Server || DAX || dbt || Snowflake || Google Big Query || Microsoft Fabric 
